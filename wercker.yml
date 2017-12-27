@@ -66,13 +66,13 @@
      - script:
          name: Remove Image behind all service/containers.
          code: |
-           ssh $DEV_REMOTE_USER@$DEV_REMOTE_HOST sudo docker rmi devopscafe/amusement-park:current || echo ‘failed to remove image behind stopped container’
+           ssh $DEV_REMOTE_USER@$DEV_REMOTE_HOST sudo docker rmi rajtechexpert/wercker-learning:current || echo ‘failed to remove image behind stopped container’
      - script:
          name: Tag the pulled image
          code: |
-           ssh $DEV_REMOTE_USER@$DEV_REMOTE_HOST sudo docker tag devopscafe/amusement-park:latest devopscafe/amusement-park:current
+           ssh $DEV_REMOTE_USER@$DEV_REMOTE_HOST sudo docker tag rajtechexpert/wercker-learning:latest rajtechexpert/wercker-learning:current
      - script:
          name: Start all services/containers
          code: |
-           ssh $DEV_REMOTE_USER@$DEV_REMOTE_HOST sudo docker container run --detach -p 80:80 --name ravi-linux devopscafe/amusement-park:current
+           ssh $DEV_REMOTE_USER@$DEV_REMOTE_HOST sudo docker container run --detach -p 80:80 --name ravi-linux rajtechexpert/wercker-learning:current
  
