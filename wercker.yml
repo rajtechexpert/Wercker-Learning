@@ -1,4 +1,4 @@
-# This references   the default nginx container from
+## This references   the default nginx container from
 # the Docker Hub: https://registry.hub.docker.com/ 
  box: nginx:latest
  
@@ -16,11 +16,11 @@
            apt-get update
            apt-get install -y curl
 # note the indentation, this is still part of the build pipeline
-   after-steps:                    
-     - slack-notifier:
-         url: $SLACK_URL
-         username: werckerbot
-         channel: notifications
+  # after-steps:                    
+   #  - slack-notifier:
+    #     url: $SLACK_URL
+     #    username: werckerbot
+      #   channel: notifications
  push-2-docker:
    box: nginx:latest
    
@@ -40,7 +40,7 @@
          password: $DOCKER_PASSWORD
          # we want to push both the release image and as the latest
          tag: dev-$WERCKER_GIT_COMMIT latest
-         repository: devopscafe/amusement-park
+         repository: rajtechexpert/wercker-learning
          registry: https://hub.docker.com
          ports: 80 
          cmd: nginx -g 'daemon off';
@@ -54,7 +54,7 @@
      - script:
          name: Pull newest docker images
          code: |
-           ssh $DEV_REMOTE_USER@$DEV_REMOTE_HOST sudo docker pull devopscafe/amusement-park
+           ssh $DEV_REMOTE_USER@$DEV_REMOTE_HOST sudo docker pull rajtechexpert/wercker-learning
      - script:
          name: Stop all running containers
          code: |
